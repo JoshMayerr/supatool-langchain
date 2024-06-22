@@ -2,6 +2,7 @@ from typing import Any, Dict, List, Type
 from langchain_core.tools import BaseTool, ToolException
 from pydantic import BaseModel, Field
 import requests
+import os
 
 
 class InputParameter(BaseModel):
@@ -43,7 +44,7 @@ class SupaExecuteTool(BaseTool):
         """
         print(metadata, args)
         args = self._match_input_params(metadata, args)
-        args["key"] = "1bf5a3b415e44dff984181153242105"
+        args["key"] = "API_KEy"
         if metadata.method == "GET":
             response = requests.get(
                 metadata.endpoint, params=args)
