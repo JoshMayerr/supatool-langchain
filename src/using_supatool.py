@@ -1,4 +1,3 @@
-from typing import Any, Dict
 from langchain.agents import AgentExecutor
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 from langchain.agents.format_scratchpad.openai_tools import (
@@ -7,7 +6,6 @@ from langchain.agents.format_scratchpad.openai_tools import (
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.agents import tool
 from langchain_openai import ChatOpenAI
-import requests
 
 from toolkit.supatoolkit import SupaToolkit
 
@@ -19,7 +17,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are a powerful assistant. Always use the provided tools to answer queries. Determine the optimal tool using supa_search, then execute the tool using supa_execute with the corresponding endpoint and args. Only use these two tools."
+            "You are a powerful assistant. First, determine the optimal tool using supa_search. Then execute the tool using supa_execute and fill in the input args based on the query. Only follow these two steps."
         ),
         ("user", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
